@@ -150,6 +150,7 @@ export const uploadImage = async (image: File) => {
 // }
 
 export const exportEntriesToExcel = async () => {
+
     const res = await getAllEntries();
     if (!res.ok) {
         alert("Failed to fetch data from the server!");
@@ -161,10 +162,16 @@ export const exportEntriesToExcel = async () => {
         return { ok: false };
     }
 
+
+
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const flattenedData: any[] = [];
 
     coaches.forEach((coach) => {
+        const perGymnastFee = 1800;
+        const baseTotalFees = perGymnastFee * coach.gymnasts.length * 1.18;
+        const totalFees = coach.wantBanner ? baseTotalFees + 1500 : baseTotalFees;
+
         if (coach.gymnasts.length === 0) {
             // If no gymnasts, create a single row for the coach
             flattenedData.push({
@@ -177,7 +184,7 @@ export const exportEntriesToExcel = async () => {
                 Phone: coach.phone,
                 "Payment Verified": coach.paymentVerified ? "Yes" : "No",
                 "Payment Mode": coach.paymentMode.toUpperCase(),
-                Fees: coach.fees,
+                Fees: totalFees,
                 "Wants Banner": coach.wantBanner ? "Yes" : "No",
                 "Banner File": coach.bannerFile || "N/A",
                 "Payment Screenshot": coach.paymentScreenshot || "N/A",
@@ -204,7 +211,7 @@ export const exportEntriesToExcel = async () => {
                     Phone: coach.phone,
                     "Payment Verified": coach.paymentVerified ? "Yes" : "No",
                     "Payment Mode": coach.paymentMode.toUpperCase(),
-                    Fees: coach.fees,
+                    Fees: totalFees,
                     "Wants Banner": coach.wantBanner ? "Yes" : "No",
                     "Banner File": coach.bannerFile || "N/A",
                     "Payment Screenshot": coach.paymentScreenshot || "N/A",
