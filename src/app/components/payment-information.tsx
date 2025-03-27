@@ -472,44 +472,6 @@ const PaymentInformation = () => {
     const baseTotalFees = perGymnastFee * gymnasts.length * 1.18;
     const totalFees = bannerPromotion.wantBanner ? baseTotalFees + 1500 : baseTotalFees;
 
-    // const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>, type: 'payment' | 'banner') => {
-    //     const file = e.target.files?.[0];
-    //     if (!file) return;
-
-    //     const allowedTypes = ['image/jpeg', 'image/png'];
-    //     if (!allowedTypes.includes(file.type)) {
-    //         alert(`Invalid file type. Allowed: ${allowedTypes.join(', ')}`);
-    //         return;
-    //     }
-
-    //     if (file.size > 1024 * 1024) { // 1MB limit
-    //         alert('File size must be less than 1MB');
-    //         return;
-    //     }
-
-    //     setUploading(true);
-    //     const reader = new FileReader();
-    //     reader.onload = async (e) => {
-    //         const result = e.target?.result as string;
-    //         try {
-    //             const res = await uploadImage(file);
-    //             if (res && res.imageUrl) {
-    //                 if (type === 'payment') {
-    //                     setPreviewUrl(result);
-    //                     setPayment({ paymentScreenshot: res.imageUrl });
-    //                 } else {
-    //                     setBannerPreviewUrl(result);
-    //                     setBannerPromotion({ bannerFile: res.imageUrl });
-    //                 }
-    //             }
-    //         } catch (error) {
-    //             alert(`Failed to upload ${type === 'payment' ? 'payment proof' : 'banner'}. Please try again.`);
-    //         } finally {
-    //             setUploading(false);
-    //         }
-    //     };
-    //     reader.readAsDataURL(file);
-    // };
 
     const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>, type: 'payment' | 'banner') => {
         const file = e.target.files?.[0];
