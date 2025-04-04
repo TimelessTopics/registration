@@ -202,7 +202,8 @@ const getAgeCategory = (age: number, level: string): string => {
 // Helper function to calculate exact age from DOB
 const calculateAge = (dob: string): number => {
     const birthDate = new Date(dob);
-    const today = new Date();
+    //const today = new Date();
+    const today = new Date(new Date().getFullYear(), 11, 31);
     let age = today.getFullYear() - birthDate.getFullYear();
     const monthDifference = today.getMonth() - birthDate.getMonth();
 
