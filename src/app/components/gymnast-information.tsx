@@ -203,7 +203,7 @@ const getAgeCategory = (age: number, level: string): string => {
 const calculateAge = (dob: string): number => {
     const birthDate = new Date(dob);
     //const today = new Date();
-    const today = new Date(new Date().getFullYear(), 11, 31);
+    const today = new Date((new Date().getFullYear() - 1), 11, 31);
     let age = today.getFullYear() - birthDate.getFullYear();
     const monthDifference = today.getMonth() - birthDate.getMonth();
 
